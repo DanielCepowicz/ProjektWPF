@@ -1,0 +1,477 @@
+﻿<Window x:Class="ProjektWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektWPF"
+        mc:Ignorable="d"
+        Title="" Height="900" Width="1520">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+    <Grid x:Name="Main_grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Ribbon x:Name="RibbonWin"  SelectedIndex="0">
+            <!-- Menu aplikacji -->
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu KeyTip="F">
+                    <RibbonApplicationMenuItem Header="Opcje" ImageSource="Images\options.png" />
+                    <RibbonApplicationMenuItem Header="Wyjście" ImageSource="Images\quit.png" />
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <!-- Pierwsza zakładka ribbona -->
+            <RibbonTab Name="Plan_zajec" Header="       Plan zajęć       " KeyTip="H" >
+                <!-- Grupa dodawania przedmiotu-->
+                <RibbonGroup x:Name="Dodaj_przedmiot" Header="Dodaj przedmiot" Margin="0,1" Width="400">
+                    <RibbonTextBox Name="dodaj_nazwa_przedmiot" Label="Nazwa" Margin="10,10,0,21"/>
+                    <Label Content="Dzień" Margin="0,10,-40,0"/>
+                    <ComboBox Name="dodaj_dzien_przedmiot" Margin="40,10,-104,0"/>
+                    <Label Content="Godzina" Margin="0,44,-3,-12"/>
+                    <ComboBox Name="dodaj_godzina_przedmiot" Margin="10,45,-53,-12"/>
+                    <RibbonButton Name="dodaj_przedmiot" SmallImageSource="Images\save.png" Label="Dodaj" Height="Auto" Margin="112,10,0,0" Click="dodaj_przedmiot_Click" />
+                </RibbonGroup>
+                <!-- Grupa edytowania przedmiotu-->
+                <RibbonGroup x:Name="Edytuj_przedmiot" Header="Edytuj przedmiot" Margin="0,1" Width="700">
+                    <RibbonTextBox Name="edytuj_nazwa_przedmiot" Label="Nazwa" Margin="67,10,-4,21"/>
+                    <Label Content="Dzień" Margin="30,10,0,-12"/>
+                    <ComboBox Name="edytuj_dzien_przedmiot" Margin="80,-10,20,-12" Width="70"/>
+                    <RibbonTextBox Name="nowa_edytuj_nazwa_przedmiot" Label="Nowa nazwa" Margin="-321,32,154,-12" Height="29"/>
+                    <Label Content="Godzina" Margin="0,10,0,0"/>
+                    <ComboBox Name="edytuj_godzina_przedmiot" RenderTransformOrigin="0.537,0.544" Margin="10,10,2,0" Width="40"/>
+                    <Label Content="Nowy dzień" Margin="-162,0,0,-12"/>
+                    <ComboBox Name="nowa_edytuj_dzien_przedmiot" Margin="-81,-9,0,-12"/>
+                    <Label Content="Nowa godzina" Margin="-50,32,-3,-12"/>
+                    <ComboBox Name="nowa_edytuj_godzina_przedmiot"  Margin="20,35,-3,-3" Width="40"/>
+                    <RibbonButton Name="edytuj_przedmiot" SmallImageSource="Images\save.png" Label="Edytuj" Height="Auto" Margin="32,10,0,0" Click="edytuj_przedmiot_Click" />
+                </RibbonGroup>
+                <!-- Grupa usuwania przedmiotu-->
+                <RibbonGroup x:Name="Usun_przedmiot" Header="Usuń przedmiot" Margin="0,1" Width="400">
+                    <RibbonTextBox Name="usun_nazwa_przedmiot" Label="Nazwa" Margin="10,10,0,21"/>
+                    <Label Content="Dzień" Margin="0,10,0,-12"/>
+                    <ComboBox Name="usun_dzien_przedmiot"  Margin="40,-11,0,-12" Height="23" VerticalAlignment="Top" Width="60"/>
+                    <Label Content="Godzina" Margin="-144,32,-3,-12" Height="39"/>
+                    <ComboBox Name="usun_godzina_przedmiot"  Margin="-79,38,-3,-12"/>
+                    <RibbonButton Name="usun_przedmiot" SmallImageSource="Images\save.png" Label="Usuń" Height="Auto" Margin="32,10,0,0" Click="usun_przedmiot_Click" />
+                </RibbonGroup>
+            </RibbonTab>
+            <!-- Druga zakładka ribbona-->
+            <RibbonTab Name="Zadania_domowe" Header=" Zadania domowe " KeyTip="H" >
+                <!-- Grupa dodawania zadań domowych-->
+                <RibbonGroup x:Name="Dodaj_zadanie" Header="Dodaj zadanie" Margin="0,1" Width="400">
+                    <RibbonTextBox Name="dodaj_nazwa_zadanie" Label="Nazwa" Margin="10,10,0,21"/>
+                    <Label Content="Dzień" Margin="0,10,-40,0"/>
+                    <ComboBox Name="dodaj_dzien_zadanie" Margin="40,10,-104,0"/>
+                    <Label Content="Godzina" Margin="0,44,-3,-12"/>
+                    <ComboBox Name="dodaj_godzina_zadanie" Margin="10,45,-53,-12"/>
+                    <RibbonButton Name="dodaj_zadanie" SmallImageSource="Images\save.png" Label="Dodaj" Height="Auto" Margin="112,10,0,0" Click="dodaj_zadanie_Click" />
+                </RibbonGroup>
+                <!-- Grupa edytowania zadań domowych-->
+                <RibbonGroup x:Name="Edytuj_zadanie" Header="Edytuj zadanie" Margin="0,1" Width="700">
+                    <RibbonTextBox Name="edytuj_nazwa_zadanie" Label="Nazwa" Margin="67,10,-4,21"/>
+                    <Label Content="Dzień" Margin="30,10,0,-12"/>
+                    <ComboBox Name="edytuj_dzien_zadanie" Margin="80,-10,20,-12" Width="70"/>
+                    <RibbonTextBox Name="nowa_edytuj_nazwa_zadanie" Label="Nowa nazwa" Margin="-321,32,154,-12" Height="29"/>
+                    <Label Content="Godzina" Margin="0,10,0,0"/>
+                    <ComboBox Name="edytuj_godzina_zadanie" RenderTransformOrigin="0.537,0.544" Margin="10,10,2,0" Width="40"/>
+                    <Label Content="Nowy dzień" Margin="-162,0,0,-12"/>
+                    <ComboBox Name="nowa_edytuj_dzien_zadanie" Margin="-81,-9,0,-12"/>
+                    <Label Content="Nowa godzina" Margin="-50,32,-3,-12"/>
+                    <ComboBox Name="nowa_edytuj_godzina_zadanie"  Margin="20,35,-3,-3" Width="40"/>
+                    <RibbonButton Name="edytuj_zadanie" SmallImageSource="Images\save.png" Label="Edytuj" Height="Auto" Margin="32,10,0,0" Click="edytuj_zadanie_Click" />
+                </RibbonGroup>
+                <!-- Grupa usuwania zadań domowych-->
+                <RibbonGroup x:Name="Usun_zadanie" Header="Usuń zadanie" Margin="0,1" Width="400">
+                    <RibbonTextBox Name="usun_nazwa_zadanie" Label="Nazwa" Margin="10,10,0,21"/>
+                    <Label Content="Dzień" Margin="0,10,0,-12"/>
+                    <ComboBox Name="usun_dzien_zadanie"  Margin="40,-11,0,-12" Height="23" VerticalAlignment="Top" Width="60"/>
+                    <Label Content="Godzina" Margin="-144,32,-3,-12" Height="39"/>
+                    <ComboBox Name="usun_godzina_zadanie"  Margin="-79,38,-3,-12"/>
+                    <RibbonButton Name="usun_zadanie" SmallImageSource="Images\save.png" Label="Usuń" Height="Auto" Margin="32,10,0,0" Click="usun_zadanie_Click" />
+                </RibbonGroup>
+            </RibbonTab>
+            <!-- Trzecia zakładka ribbona-->
+            <RibbonTab Name="Sprawdziany" Header="     Sprawdziany     " KeyTip="H" >
+                <!-- Grupa dodawania sprawdzianów-->
+                <RibbonGroup x:Name="Dodaj_sprawdzian" Header="Dodaj sprawdzian" Margin="0,1" Width="400">
+                    <RibbonTextBox Name="dodaj_nazwa_sprawdzian" Label="Nazwa" Margin="10,10,0,21"/>
+                    <Label Content="Dzień" Margin="0,10,-40,0"/>
+                    <ComboBox Name="dodaj_dzien_sprawdzian" Margin="40,10,-104,0"/>
+                    <Label Content="Godzina" Margin="0,44,-3,-12"/>
+                    <ComboBox Name="dodaj_godzina_sprawdzian" Margin="10,45,-53,-12"/>
+                    <RibbonButton Name="dodaj_sprawdzian" SmallImageSource="Images\save.png" Label="Dodaj" Height="Auto" Margin="112,10,0,0" Click="dodaj_sprawdzian_Click" />
+                </RibbonGroup>
+                <!-- Grupa edytowania sprawdzianów-->
+                <RibbonGroup x:Name="Edytuj_sprawdzian" Header="Edytuj sprawdzian" Margin="0,1" Width="700">
+                    <RibbonTextBox Name="edytuj_nazwa_sprawdzian" Label="Nazwa" Margin="67,10,-4,21"/>
+                    <Label Content="Dzień" Margin="30,10,0,-12"/>
+                    <ComboBox Name="edytuj_dzien_sprawdzian" Margin="80,-10,20,-12" Width="70"/>
+                    <RibbonTextBox Name="nowa_edytuj_nazwa_sprawdzian" Label="Nowa nazwa" Margin="-321,32,154,-12" Height="29"/>
+                    <Label Content="Godzina" Margin="0,10,0,0"/>
+                    <ComboBox Name="edytuj_godzina_sprawdzian" RenderTransformOrigin="0.537,0.544" Margin="10,10,2,0" Width="40"/>
+                    <Label Content="Nowy dzień" Margin="-162,0,0,-12"/>
+                    <ComboBox Name="nowa_edytuj_dzien_sprawdzian" Margin="-81,-9,0,-12"/>
+                    <Label Content="Nowa godzina" Margin="-50,32,-3,-12"/>
+                    <ComboBox Name="nowa_edytuj_godzina_sprawdzian"  Margin="20,35,-3,-3" Width="40"/>
+                    <RibbonButton Name="edytuj_sprawdzian" SmallImageSource="Images\save.png" Label="Edytuj" Height="Auto" Margin="32,10,0,0" Click="edytuj_sprawdzian_Click" />
+                </RibbonGroup>
+                <!-- Grupa usuwania sprawdzianów-->
+                <RibbonGroup x:Name="Usun_sprawdzian" Header="Usuń sprawdzian" Margin="0,1" Width="400">
+                    <RibbonTextBox Name="usun_nazwa_sprawdzian" Label="Nazwa" Margin="10,10,0,21"/>
+                    <Label Content="Dzień" Margin="0,10,0,-12"/>
+                    <ComboBox Name="usun_dzien_sprawdzian"  Margin="40,-11,0,-12" Height="23" VerticalAlignment="Top" Width="60"/>
+                    <Label Content="Godzina" Margin="-144,32,-3,-12" Height="39"/>
+                    <ComboBox Name="usun_godzina_sprawdzian"  Margin="-79,38,-3,-12"/>
+                    <RibbonButton Name="usun_sprawdzian" SmallImageSource="Images\save.png" Label="Usuń" Height="Auto" Margin="32,10,0,0" Click="usun_sprawdzian_Click" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <Grid Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=Plan_zajec}" x:Name="plan_grid">
+            <Frame Name="Plan_zajec_frame" Content="" HorizontalAlignment="Left" Height="727" Margin="0,140,0,0" VerticalAlignment="Top" Width="1512" Foreground="#FF707070" Background="#FFC9C9C9"/>
+            <!--GODZINY-->
+            <Label Content="8:00" Margin="170,174,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="9:00" Margin="170,229,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="10:00" Margin="170,284,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="11:00" Margin="170,339,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="12:00" Margin="170,394,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="13:00" Margin="170,449,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="14:00" Margin="170,504,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="15:00" Margin="170,559,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="16:00" Margin="170,614,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="17:00" Margin="170,669,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="18:00" Margin="170,724,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="19:00" Margin="170,779,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="20:00" Margin="170,829,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <!--PLAN PONIEDZIALEK-->
+            <Label Content="Poniedziałek" Margin="215,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="plan_pn_8_9" Content="" Margin="215,192,1147,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="plan_pn_9_10" Content="" Margin="215,247,1147,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_10_11" Content="" Margin="215,302,1147,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_11_12" Content="" Margin="215,357,1147,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_12_13" Content="" Margin="215,412,1147,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_13_14" Content="" Margin="215,467,1147,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_14_15" Content="" Margin="215,522,1147,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_15_16" Content="" Margin="215,577,1147,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_16_17" Content="" Margin="215,632,1147,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_17_18" Content="" Margin="215,687,1147,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_18_19" Content="" Margin="215,742,1147,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pn_19_20" Content="" Margin="215,797,1147,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--PLAN WTOREK-->
+            <Label Content="Wtorek" Margin="370,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="plan_wt_8_9" Content="" Margin="370,192,992,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="plan_wt_9_10" Content="" Margin="370,247,992,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_10_11" Content="" Margin="370,302,992,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_11_12" Content="" Margin="370,357,992,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_12_13" Content="" Margin="370,412,992,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_13_14" Content="" Margin="370,467,992,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_14_15" Content="" Margin="370,522,992,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_15_16" Content="" Margin="370,577,992,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_16_17" Content="" Margin="370,632,992,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_17_18" Content="" Margin="370,687,992,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_18_19" Content="" Margin="370,742,992,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_wt_19_20" Content="" Margin="370,797,992,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--PLAN ŚRODA-->
+            <Label Content="Środa" Margin="525,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="plan_sr_8_9" Content="" Margin="525,192,837,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="plan_sr_9_10" Content="" Margin="525,247,837,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_10_11" Content="" Margin="525,302,837,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_11_12" Content="" Margin="525,357,837,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_12_13" Content="" Margin="525,412,837,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_13_14" Content="" Margin="525,467,837,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_14_15" Content="" Margin="525,522,837,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_15_16" Content="" Margin="525,577,837,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_16_17" Content="" Margin="525,632,837,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_17_18" Content="" Margin="525,687,837,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_18_19" Content="" Margin="525,742,837,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sr_19_20" Content="" Margin="525,797,837,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--PLAN CZWARTEK-->
+            <Label Content="Czwartek" Margin="680,166,682,677" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label Name="plan_cz_8_9" Content="" Margin="680,192,682,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"></Label>
+            <Label Name="plan_cz_9_10" Content="" Margin="680,247,682,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_10_11" Content="" Margin="680,302,682,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_11_12" Content="" Margin="680,357,682,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_12_13" Content="" Margin="680,412,682,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_13_14" Content="" Margin="680,467,682,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_14_15" Content="" Margin="680,522,682,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_15_16" Content="" Margin="680,577,682,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_16_17" Content="" Margin="680,632,682,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_17_18" Content="" Margin="680,687,682,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_18_19" Content="" Margin="680,742,682,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="plan_cz_19_20" Content="" Margin="680,797,682,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <!--PLAN PIĄTEK-->
+            <Label Content="Piątek" Margin="835,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="plan_pt_8_9" Content="" Margin="835,192,527,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="plan_pt_9_10" Content="" Margin="835,247,527,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_10_11" Content="" Margin="835,302,527,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_11_12" Content="" Margin="835,357,527,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_12_13" Content="" Margin="835,412,527,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_13_14" Content="" Margin="835,467,527,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_14_15" Content="" Margin="835,522,527,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_15_16" Content="" Margin="835,577,527,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_16_17" Content="" Margin="835,632,527,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_17_18" Content="" Margin="835,687,527,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_18_19" Content="" Margin="835,742,527,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_pt_19_20" Content="" Margin="835,797,527,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--PLAN SOBOTA-->
+            <Label Content="Sobota" Margin="990,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="plan_sb_8_9" Content="" Margin="990,192,372,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="plan_sb_9_10" Content="" Margin="990,247,372,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_10_11" Content="" Margin="990,302,372,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_11_12" Content="" Margin="990,357,372,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_12_13" Content="" Margin="990,412,372,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_13_14" Content="" Margin="990,467,372,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_14_15" Content="" Margin="990,522,372,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_15_16" Content="" Margin="990,577,372,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_16_17" Content="" Margin="990,632,372,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_17_18" Content="" Margin="990,687,372,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_18_19" Content="" Margin="990,742,372,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_sb_19_20" Content="" Margin="990,797,372,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--PLAN NIEDZIELA-->
+            <Label Content="Niedziela" Margin="1145,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="plan_nd_8_9" Content="" Margin="1145,192,217,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="plan_nd_9_10" Content="" Margin="1145,247,217,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_10_11" Content="" Margin="1145,302,217,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_11_12" Content="" Margin="1145,357,217,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_12_13" Content="" Margin="1145,412,217,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_13_14" Content="" Margin="1145,467,217,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_14_15" Content="" Margin="1145,522,217,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_15_16" Content="" Margin="1145,577,217,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_16_17" Content="" Margin="1145,632,217,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_17_18" Content="" Margin="1145,687,217,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_18_19" Content="" Margin="1145,742,217,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="plan_nd_19_20" Content="" Margin="1145,797,217,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+        </Grid>
+        <Grid Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=Zadania_domowe}" x:Name="zadania_grid">
+            <Frame Name="Zadania_domowe_frame" Content="" HorizontalAlignment="Left" Height="727" Margin="0,140,0,0" VerticalAlignment="Top" Width="1512" Foreground="#FF707070" Background="#FFC9C9C9"/>
+            <!--GODZINY-->
+            <Label Content="8:00" Margin="170,174,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="9:00" Margin="170,229,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="10:00" Margin="170,284,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="11:00" Margin="170,339,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="12:00" Margin="170,394,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="13:00" Margin="170,449,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="14:00" Margin="170,504,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="15:00" Margin="170,559,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="16:00" Margin="170,614,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="17:00" Margin="170,669,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="18:00" Margin="170,724,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="19:00" Margin="170,779,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="20:00" Margin="170,829,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <!--ZADANIE PONIEDZIALEK-->
+            <Label Content="Poniedziałek" Margin="215,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="zadanie_pn_8_9" Content="" Margin="215,192,1147,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="zadanie_pn_9_10" Content="" Margin="215,247,1147,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_10_11" Content="" Margin="215,302,1147,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_11_12" Content="" Margin="215,357,1147,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_12_13" Content="" Margin="215,412,1147,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_13_14" Content="" Margin="215,467,1147,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_14_15" Content="" Margin="215,522,1147,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_15_16" Content="" Margin="215,577,1147,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_16_17" Content="" Margin="215,632,1147,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_17_18" Content="" Margin="215,687,1147,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_18_19" Content="" Margin="215,742,1147,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pn_19_20" Content="" Margin="215,797,1147,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--ZADANIE WTOREK-->
+            <Label Content="Wtorek" Margin="370,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="zadanie_wt_8_9" Content="" Margin="370,192,992,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="zadanie_wt_9_10" Content="" Margin="370,247,992,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_10_11" Content="" Margin="370,302,992,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_11_12" Content="" Margin="370,357,992,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_12_13" Content="" Margin="370,412,992,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_13_14" Content="" Margin="370,467,992,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_14_15" Content="" Margin="370,522,992,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_15_16" Content="" Margin="370,577,992,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_16_17" Content="" Margin="370,632,992,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_17_18" Content="" Margin="370,687,992,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_18_19" Content="" Margin="370,742,992,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_wt_19_20" Content="" Margin="370,797,992,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--ZADANIE ŚRODA-->
+            <Label Content="Środa" Margin="525,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="zadanie_sr_8_9" Content="" Margin="525,192,837,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="zadanie_sr_9_10" Content="" Margin="525,247,837,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_10_11" Content="" Margin="525,302,837,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_11_12" Content="" Margin="525,357,837,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_12_13" Content="" Margin="525,412,837,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_13_14" Content="" Margin="525,467,837,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_14_15" Content="" Margin="525,522,837,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_15_16" Content="" Margin="525,577,837,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_16_17" Content="" Margin="525,632,837,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_17_18" Content="" Margin="525,687,837,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_18_19" Content="" Margin="525,742,837,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sr_19_20" Content="" Margin="525,797,837,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--ZADANIE CZWARTEK-->
+            <Label Content="Czwartek" Margin="680,166,682,677" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label Name="zadanie_cz_8_9" Content="" Margin="680,192,682,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"></Label>
+            <Label Name="zadanie_cz_9_10" Content="" Margin="680,247,682,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_10_11" Content="" Margin="680,302,682,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_11_12" Content="" Margin="680,357,682,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_12_13" Content="" Margin="680,412,682,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_13_14" Content="" Margin="680,467,682,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_14_15" Content="" Margin="680,522,682,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_15_16" Content="" Margin="680,577,682,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_16_17" Content="" Margin="680,632,682,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_17_18" Content="" Margin="680,687,682,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_18_19" Content="" Margin="680,742,682,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="zadanie_cz_19_20" Content="" Margin="680,797,682,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <!--ZADANIE PIĄTEK-->
+            <Label Content="Piątek" Margin="835,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="zadanie_pt_8_9" Content="" Margin="835,192,527,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="zadanie_pt_9_10" Content="" Margin="835,247,527,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_10_11" Content="" Margin="835,302,527,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_11_12" Content="" Margin="835,357,527,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_12_13" Content="" Margin="835,412,527,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_13_14" Content="" Margin="835,467,527,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_14_15" Content="" Margin="835,522,527,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_15_16" Content="" Margin="835,577,527,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_16_17" Content="" Margin="835,632,527,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_17_18" Content="" Margin="835,687,527,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_18_19" Content="" Margin="835,742,527,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_pt_19_20" Content="" Margin="835,797,527,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--ZADANIE SOBOTA-->
+            <Label Content="Sobota" Margin="990,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="zadanie_sb_8_9" Content="" Margin="990,192,372,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="zadanie_sb_9_10" Content="" Margin="990,247,372,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_10_11" Content="" Margin="990,302,372,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_11_12" Content="" Margin="990,357,372,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_12_13" Content="" Margin="990,412,372,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_13_14" Content="" Margin="990,467,372,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_14_15" Content="" Margin="990,522,372,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_15_16" Content="" Margin="990,577,372,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_16_17" Content="" Margin="990,632,372,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_17_18" Content="" Margin="990,687,372,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_18_19" Content="" Margin="990,742,372,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_sb_19_20" Content="" Margin="990,797,372,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--ZADANIE NIEDZIELA-->
+            <Label Content="Niedziela" Margin="1145,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="zadanie_nd_8_9" Content="" Margin="1145,192,217,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="zadanie_nd_9_10" Content="" Margin="1145,247,217,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_10_11" Content="" Margin="1145,302,217,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_11_12" Content="" Margin="1145,357,217,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_12_13" Content="" Margin="1145,412,217,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_13_14" Content="" Margin="1145,467,217,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_14_15" Content="" Margin="1145,522,217,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_15_16" Content="" Margin="1145,577,217,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_16_17" Content="" Margin="1145,632,217,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_17_18" Content="" Margin="1145,687,217,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_18_19" Content="" Margin="1145,742,217,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="zadanie_nd_19_20" Content="" Margin="1145,797,217,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+        </Grid>
+        <Grid Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=Sprawdziany}" x:Name="spr_grid">
+            <Frame Name="Sprawdziany_frame" Content="" HorizontalAlignment="Left" Height="727" Margin="0,140,0,0" VerticalAlignment="Top" Width="1512" Foreground="#FF707070" Background="#FFC9C9C9"/>
+            <!--GODZINY-->
+            <Label Content="8:00" Margin="170,174,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="9:00" Margin="170,229,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="10:00" Margin="170,284,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="11:00" Margin="170,339,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="12:00" Margin="170,394,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="13:00" Margin="170,449,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="14:00" Margin="170,504,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="15:00" Margin="170,559,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="16:00" Margin="170,614,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="17:00" Margin="170,669,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="18:00" Margin="170,724,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="19:00" Margin="170,779,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <Label Content="20:00" Margin="170,829,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="45" HorizontalAlignment="Left" RenderTransformOrigin="-0.2,1.808" Height="23"/>
+            <!--SPRAWDZIAN PONIEDZIALEK-->
+            <Label Content="Poniedziałek" Margin="215,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="spr_pn_8_9" Content="" Margin="215,192,1147,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="spr_pn_9_10" Content="" Margin="215,247,1147,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_10_11" Content="" Margin="215,302,1147,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_11_12" Content="" Margin="215,357,1147,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_12_13" Content="" Margin="215,412,1147,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_13_14" Content="" Margin="215,467,1147,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_14_15" Content="" Margin="215,522,1147,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_15_16" Content="" Margin="215,577,1147,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_16_17" Content="" Margin="215,632,1147,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_17_18" Content="" Margin="215,687,1147,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_18_19" Content="" Margin="215,742,1147,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pn_19_20" Content="" Margin="215,797,1147,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--SPRAWDZIAN WTOREK-->
+            <Label Content="Wtorek" Margin="370,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="spr_wt_8_9" Content="" Margin="370,192,992,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="spr_wt_9_10" Content="" Margin="370,247,992,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_10_11" Content="" Margin="370,302,992,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_11_12" Content="" Margin="370,357,992,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_12_13" Content="" Margin="370,412,992,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_13_14" Content="" Margin="370,467,992,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_14_15" Content="" Margin="370,522,992,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_15_16" Content="" Margin="370,577,992,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_16_17" Content="" Margin="370,632,992,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_17_18" Content="" Margin="370,687,992,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_18_19" Content="" Margin="370,742,992,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_wt_19_20" Content="" Margin="370,797,992,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--SPRAWDZIAN ŚRODA-->
+            <Label Content="Środa" Margin="525,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="spr_sr_8_9" Content="" Margin="525,192,837,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="spr_sr_9_10" Content="" Margin="525,247,837,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_10_11" Content="" Margin="525,302,837,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_11_12" Content="" Margin="525,357,837,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_12_13" Content="" Margin="525,412,837,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_13_14" Content="" Margin="525,467,837,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_14_15" Content="" Margin="525,522,837,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_15_16" Content="" Margin="525,577,837,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_16_17" Content="" Margin="525,632,837,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_17_18" Content="" Margin="525,687,837,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_18_19" Content="" Margin="525,742,837,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sr_19_20" Content="" Margin="525,797,837,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--SPRAWDZIAN CZWARTEK-->
+            <Label Content="Czwartek" Margin="680,166,682,677" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label Name="spr_cz_8_9" Content="" Margin="680,192,682,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"></Label>
+            <Label Name="spr_cz_9_10" Content="" Margin="680,247,682,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_10_11" Content="" Margin="680,302,682,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_11_12" Content="" Margin="680,357,682,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_12_13" Content="" Margin="680,412,682,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_13_14" Content="" Margin="680,467,682,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_14_15" Content="" Margin="680,522,682,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_15_16" Content="" Margin="680,577,682,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_16_17" Content="" Margin="680,632,682,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_17_18" Content="" Margin="680,687,682,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_18_19" Content="" Margin="680,742,682,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <Label Name="spr_cz_19_20" Content="" Margin="680,797,682,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"></Label>
+            <!--SPRAWDZIAN PIĄTEK-->
+            <Label Content="Piątek" Margin="835,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="spr_pt_8_9" Content="" Margin="835,192,527,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="spr_pt_9_10" Content="" Margin="835,247,527,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_10_11" Content="" Margin="835,302,527,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_11_12" Content="" Margin="835,357,527,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_12_13" Content="" Margin="835,412,527,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_13_14" Content="" Margin="835,467,527,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_14_15" Content="" Margin="835,522,527,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_15_16" Content="" Margin="835,577,527,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_16_17" Content="" Margin="835,632,527,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_17_18" Content="" Margin="835,687,527,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_18_19" Content="" Margin="835,742,527,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_pt_19_20" Content="" Margin="835,797,527,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--SPRAWDZIAN SOBOTA-->
+            <Label Content="Sobota" Margin="990,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="spr_sb_8_9" Content="" Margin="990,192,372,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="spr_sb_9_10" Content="" Margin="990,247,372,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_10_11" Content="" Margin="990,302,372,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_11_12" Content="" Margin="990,357,372,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_12_13" Content="" Margin="990,412,372,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_13_14" Content="" Margin="990,467,372,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_14_15" Content="" Margin="990,522,372,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_15_16" Content="" Margin="990,577,372,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_16_17" Content="" Margin="990,632,372,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_17_18" Content="" Margin="990,687,372,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_18_19" Content="" Margin="990,742,372,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_sb_19_20" Content="" Margin="990,797,372,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <!--SPRAWDZIAN NIEDZIELA-->
+            <Label Content="Niedziela" Margin="1145,166,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+            <Label x:Name="spr_nd_8_9" Content="" Margin="1145,192,217,627" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" BorderBrush="Black"/>
+            <Label x:Name="spr_nd_9_10" Content="" Margin="1145,247,217,572" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_10_11" Content="" Margin="1145,302,217,517" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_11_12" Content="" Margin="1145,357,217,462" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_12_13" Content="" Margin="1145,412,217,407" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_13_14" Content="" Margin="1145,467,217,352" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_14_15" Content="" Margin="1145,522,217,297" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_15_16" Content="" Margin="1145,577,217,242" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_16_17" Content="" Margin="1145,632,217,187" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_17_18" Content="" Margin="1145,687,217,132" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_18_19" Content="" Margin="1145,742,217,77" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+            <Label x:Name="spr_nd_19_20" Content="" Margin="1145,797,217,22" Width="150" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White"/>
+        </Grid>
+    </Grid>
+</Window>
